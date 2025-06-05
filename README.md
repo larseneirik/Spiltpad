@@ -1,4 +1,4 @@
-# Spiltpad
+# Splitpad
 
 ## aka Notepad with a split
 
