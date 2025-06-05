@@ -1,8 +1,12 @@
 # Spiltpad
 
-# Minimal Markdown Notepad
+## aka Notepad with a split
 
-A lightweight, dual-pane markdown editor designed for simultaneous document editing and comparison. Built with pure HTML, CSS, and JavaScript, requiring no installation or dependencies beyond a modern web browser.
+A lightweight, dual-pane markdown editor designed for simultaneous document editing and comparison. 
+
+Built with pure HTML, CSS, and JavaScript, requiring no installation or dependencies beyond a web browser.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a12bf539-02a6-4382-8de8-0b4a26f1b99b/deploy-status)](https://app.netlify.com/projects/ornate-naiad-10cd0b/deploys)
 
 ## Overview
 
