@@ -59,7 +59,7 @@ The Minimal Markdown Notepad provides a distraction-free writing environment wit
   - Clear (⌫): Remove all text (with confirmation)
   - Undo (↺): Revert to previous state
   - Redo (↻): Restore undone changes
-  - Preview (◉): Toggle markdown preview mode
+  - Preview (👁): Toggle markdown preview mode
 
 ### Editor Area
 - Syntax-highlighted textarea with custom styling
