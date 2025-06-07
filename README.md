@@ -293,3 +293,4 @@ While not exposed in UI, the CSS variables can be modified for custom themes:
 2. Use browser back button to recover
 3. Check browser autofill history
 4. Restore from JSON export
+
