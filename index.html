@@ -696,10 +696,10 @@ Compare documents side by side
         }
 
         // Input handler
-        const hi = db(p => {
-            sv(p);
-            rn(p);
-        }, 100);
+        const hi = {
+            l: db(() => { sv('l'); rn('l'); }, 100),
+            r: db(() => { sv('r'); rn('r'); }, 100)
+        };
 
         // History
         function hs(p, d) {
@@ -769,7 +769,7 @@ Compare documents side by side
             const ed = e[p].e;
             ed.addEventListener('input', () => {
                 up(p, ed.value);
-                hi(p);
+                hi[p]();
             });
             ed.addEventListener('keydown', ev => {
                 const k = ev.key, c = ev.ctrlKey || ev.metaKey;
