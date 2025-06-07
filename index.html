@@ -672,7 +672,10 @@ Compare documents side by side
                 if (h.i < h.h.length - 1) h.h = h.h.slice(0, h.i + 1);
                 if (h.h[h.i] !== c) {
                     h.h.push(c);
-                    if (++h.i > 50) h.h.shift() && h.i--;
+                    if (++h.i > 50) {
+                        h.h.shift();
+                        h.i--;
+                    }
                 }
                 st[p] = 0;
             });
