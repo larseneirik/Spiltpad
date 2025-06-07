@@ -53,6 +53,15 @@ const th = f => {
     };
 };
 
+// Change pane accent color
+function setPaneAccent(paneElement, accentName) {
+    paneElement.classList.forEach(c => {
+        if (c.startsWith('accent-')) paneElement.classList.remove(c);
+    });
+    paneElement.classList.add(`accent-${accentName}`);
+    paneElement.setAttribute('data-accent', accentName);
+}
+
 // Save state
 function sv(p) {
     const c = e[p].e.value, h = s[p];
@@ -119,7 +128,7 @@ const ac = {
     redo: p => hs(p, 1),
     preview: (p, b) => {
         e[p].c.classList.toggle('mode-preview');
-        if (b) b.classList.toggle(`active-${p=='l'?'left':'right'}`);
+        if (b) b.classList.toggle('active');
         e[p].c.classList.contains('mode-preview') && rn(p);
     }
 };

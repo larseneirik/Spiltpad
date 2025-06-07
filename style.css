@@ -20,7 +20,7 @@
     --status-h: 22px;
 }
 
-* { box-sizing: border-box }
+* { box-sizing: border-box; }
 
 body, html {
     margin: 0;
@@ -71,21 +71,22 @@ body, html {
     min-height: var(--btn-size);
 }
 
-.toggle-orientation-btn {
-    background: #555;
-}
+.btn--neutral { background: #555; }
+.btn--neutral:hover { background: #666; }
 
-.toggle-orientation-btn:hover {
-    background: #666;
-}
+.btn--primary { background: #0066cc; }
+.btn--primary:hover { background: #0052a3; }
 
-.save-btn {
-    background: #0066cc;
-}
+.btn--secondary { background: #888; }
+.btn--secondary:hover { background: #777; }
 
-.save-btn:hover {
-    background: #0052a3;
-}
+
+
+
+
+
+
+
 
 .workspace {
     display: flex;
@@ -107,11 +108,9 @@ body, html {
     position: relative;
     transition: all 0.3s ease;
     overflow: visible;
+    background: linear-gradient(135deg, #3a2c1e 0%, #3a3a3a 100%);
 }
 
-#left-pane, #right-pane {
-    position: relative;
-}
 
 .workspace.vertical .pane {
     width: 100%;
@@ -120,27 +119,34 @@ body, html {
     min-height: min(200px, 30vh);
 }
 
-#left-pane {
-    background: linear-gradient(135deg, #3a2c1e 0%, #2a4a3a 100%);
-    border-right: 1px solid var(--clr-secondary);
+
+.accent-blue {
+    --accent: var(--blue);
+    --accent-bg: var(--blue-bg);
+    --accent-focus: var(--blue-focus);
+    --accent-glow: var(--blue-glow);
 }
 
-.workspace.vertical #left-pane {
-    border-right: none;
-    border-bottom: 1px solid var(--clr-secondary);
+.accent-orange {
+    --accent: var(--orange);
+    --accent-bg: var(--orange-bg);
+    --accent-focus: var(--orange-focus);
+    --accent-glow: var(--orange-glow);
 }
 
-#right-pane {
-    background: linear-gradient(135deg, #3a2c1e 0%, #4a3a2a 100%);
-}
+
+
 
 .separator {
-    width: var(--sep);
-    background: var(--clr-secondary);
-    cursor: col-resize;
     flex-shrink: 0;
-    transition: background 0.2s;
     z-index: 10;
+    transition: background 0.2s;
+    background: var(--clr-secondary);
+}
+
+.workspace:not(.vertical) .separator {
+    width: var(--sep);
+    cursor: col-resize;
 }
 
 .workspace.vertical .separator {
@@ -153,14 +159,17 @@ body, html {
     background: var(--btn-hover);
 }
 
+.toolbar, .column-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
 .column-header {
     padding: 6px 8px;
     background: rgba(0,0,0,0.3);
     border-bottom: 1px solid var(--clr-secondary);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
     position: relative;
     z-index: 10;
 }
@@ -181,10 +190,6 @@ body, html {
 }
 
 .toolbar {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    flex-wrap: nowrap;
     flex: 0 0 auto;
     position: relative;
 }
@@ -196,11 +201,7 @@ body, html {
 }
 
 /* Force toolbar to wrap on smaller screens */
-@media (max-width: 500px) {
-    .column-title {
-        flex: 1 0 100%;
-    }
-
+@media
     .toolbar {
         width: 100%;
         justify-content: flex-end;
@@ -240,35 +241,22 @@ body, html {
 }
 
 /* Position dropdown relative to pane */
-#left-pane, #right-pane {
-    position: relative;
-}
-
-#left-pane .dropdown-menu {
-    background: rgba(58, 58, 58, 0.95);
-    border-color: var(--blue);
-}
-
-#right-pane .dropdown-menu {
-    background: rgba(58, 58, 58, 0.95);
-    border-color: var(--orange);
-}
+.accent-blue .dropdown-menu { border-color: var(--blue); }
+.accent-orange .dropdown-menu { border-color: var(--orange); }
 
 .dropdown-menu.show {
     display: block;
 }
 
 .dropdown-menu button {
+    all: unset;
     display: block;
     width: 100%;
     padding: 10px 16px;
     text-align: left;
-    background: none;
-    border: none;
     color: var(--clr-primary);
     cursor: pointer;
     font-size: 14px;
-    border-radius: 0;
 }
 
 .dropdown-menu button:hover {
@@ -283,24 +271,6 @@ body, html {
     border-radius: 0 0 4px 4px;
 }
 
-@media (max-width: 600px) {
-    .toolbar {
-        position: relative;
-    }
-
-    /* Ensure dropdown is visible on mobile */
-    .column-header {
-        overflow: visible;
-    }
-
-    .dropdown-menu {
-        position: fixed;
-        top: auto;
-        right: 8px;
-        left: auto;
-        max-width: calc(100vw - 16px);
-    }
-}
 
 .toolbar button {
     background: var(--btn-bg);
@@ -338,12 +308,8 @@ body, html {
     background: var(--btn-hover);
 }
 
-.toolbar button.active-left {
-    color: var(--blue);
-}
-
-.toolbar button.active-right {
-    color: var(--orange);
+.toolbar button.active {
+    color: var(--accent);
 }
 
 .content {
@@ -359,11 +325,15 @@ body, html {
     position: relative;
 }
 
-textarea {
+textarea,
+.preview {
     width: calc(100% - 8px);
     height: calc(100% - 8px);
     padding: 12px;
     margin: 4px;
+}
+
+textarea {
     background: transparent;
     border: none;
     font-family: inherit;
@@ -384,24 +354,14 @@ textarea {
     }
 }
 
-#left-pane textarea {
-    color: var(--blue);
-    background-color: var(--blue-bg);
+.pane textarea {
+    color: var(--accent);
+    background-color: var(--accent-bg);
 }
 
-#left-pane textarea:focus {
-    background: var(--blue-focus);
-    box-shadow: 0 0 20px var(--blue-glow);
-}
-
-#right-pane textarea {
-    color: var(--orange);
-    background-color: var(--orange-bg);
-}
-
-#right-pane textarea:focus {
-    background: var(--orange-focus);
-    box-shadow: 0 0 20px var(--orange-glow);
+.pane textarea:focus {
+    background: var(--accent-focus);
+    box-shadow: 0 0 20px var(--accent-glow);
 }
 
 textarea::placeholder {
@@ -409,10 +369,6 @@ textarea::placeholder {
 }
 
 .preview {
-    width: calc(100% - 8px);
-    height: calc(100% - 8px);
-    padding: 12px;
-    margin: 4px;
     overflow-y: auto;
     background: rgba(0,0,0,0.3);
     border-radius: 8px;
@@ -422,8 +378,7 @@ textarea::placeholder {
 
 .preview h1, .preview h2, .preview h3 {
     color: #fff;
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
+    margin: 1.5em 0 0.5em;
 }
 
 .preview h1 { font-size: 1.8em }
@@ -480,7 +435,7 @@ textarea::placeholder {
     height: var(--status-h);
 }
 
-.toolbar button[data-tooltip]:hover::after {
+:where(.toolbar button[data-tooltip]):hover::after {
     content: attr(data-tooltip);
     position: absolute;
     background: var(--clr-secondary);
@@ -496,35 +451,17 @@ textarea::placeholder {
     z-index: 100;
     pointer-events: none;
 }
-
 @media (max-width: 768px) {
-    .header {
-        padding: 5px 8px;
-        gap: 8px;
-    }
-    
-    textarea, .preview {
-        padding: 10px;
-    }
-    
-    .toolbar button[data-tooltip]::after {
-        display: none;
-    }
+    .header { padding: 5px 8px; gap: 8px; }
+    textarea, .preview { padding: 10px; }
+    :where(.toolbar button[data-tooltip])::after { display: none; }
+    .workspace.vertical .pane { min-height: 220px; }
+    .status { height: auto; min-height: var(--status-h); padding: 3px 6px; }
 }
 
-@media (max-width: 480px) {
-    .workspace.vertical .pane {
-        min-height: 220px;
-    }
-    
-    .status {
-        height: auto;
-        min-height: var(--status-h);
-        padding: 3px 6px;
-    }
-}
 
 /* Disable transitions during resize */
 .resizing, .resizing * {
     transition: none !important;
 }
+
