@@ -170,8 +170,8 @@ While not built into the interface, exported JSON files can be manually edited a
 - Modern CSS with CSS variables
 
 ### Code Organization
-- Single HTML file application
-- Inline styles for zero-dependency deployment
+- Separate HTML, CSS, and JS files
+- External stylesheet for easier customization
 - Modular JavaScript functions
 - Event-driven architecture
 
