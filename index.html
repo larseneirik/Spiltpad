@@ -196,6 +196,12 @@
             flex: 0 0 auto;
             position: relative;
         }
+
+        /* Ensure compact headers keep title and hamburger on one line */
+        .column-header.compact {
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
         
         /* Force toolbar to wrap on smaller screens */
         @media (max-width: 500px) {
