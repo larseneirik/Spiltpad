@@ -1,4 +1,4 @@
-# Splitpad
+# Spiltpad
 
 ## aka Notepad with a split
 
@@ -293,8 +293,4 @@ While not exposed in UI, the CSS variables can be modified for custom themes:
 2. Use browser back button to recover
 3. Check browser autofill history
 4. Restore from JSON export
-## Testing
-
-1. Run `npm install` to install development dependencies.
-2. Execute `npm test` to run the Jest suite located in the `tests/` directory.
 
