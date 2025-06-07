@@ -724,7 +724,7 @@ Compare documents side by side
             redo: p => hs(p, 1),
             preview: (p, b) => {
                 e[p].c.classList.toggle('mode-preview');
-                b.classList.toggle(`active-${p=='l'?'left':'right'}`);
+                if (b) b.classList.toggle(`active-${p=='l'?'left':'right'}`);
                 e[p].c.classList.contains('mode-preview') && rn(p);
             }
         };
@@ -854,7 +854,7 @@ Compare documents side by side
                     if (dd) {
                         dd.classList.remove('show');
                         // Update aria-expanded
-                        const toggle = dd.closest('.toolbar').querySelector('.menu-toggle');
+                        const toggle = dd.closest('.pane').querySelector('.menu-toggle');
                         if (toggle) toggle.setAttribute('aria-expanded', 'false');
                     }
                 } 
@@ -862,13 +862,13 @@ Compare documents side by side
                 else if (b.matches('.menu-toggle')) {
                     ev.stopPropagation();
                     const p = b.dataset.pane;
-                    const dd = $(`${p}-dropdown`);
+                    const dd = e[p[0]].d || $(`${p}-dropdown`);
                     const isOpen = dd.classList.contains('show');
                     
                     // Close all dropdowns first
                     document.querySelectorAll('.dropdown-menu.show').forEach(d => {
                         d.classList.remove('show');
-                        const t = d.closest('.toolbar').querySelector('.menu-toggle');
+                        const t = d.closest('.pane').querySelector('.menu-toggle');
                         if (t) t.setAttribute('aria-expanded', 'false');
                     });
                     
@@ -882,7 +882,7 @@ Compare documents side by side
                 else if (!b.closest('.dropdown-menu') && !b.closest('.menu-toggle')) {
                     document.querySelectorAll('.dropdown-menu.show').forEach(d => {
                         d.classList.remove('show');
-                        const t = d.closest('.toolbar').querySelector('.menu-toggle');
+                        const t = d.closest('.pane').querySelector('.menu-toggle');
                         if (t) t.setAttribute('aria-expanded', 'false');
                     });
                 }
