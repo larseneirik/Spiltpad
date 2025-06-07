@@ -272,23 +272,15 @@
         }
         
         @media (max-width: 600px) {
-            .toolbar button:not(.menu-toggle) {
-                display: none;
-            }
-            
-            .menu-toggle {
-                display: flex;
-            }
-            
             .toolbar {
                 position: relative;
             }
-            
+
             /* Ensure dropdown is visible on mobile */
             .column-header {
                 overflow: visible;
             }
-            
+
             .dropdown-menu {
                 position: fixed;
                 top: auto;
@@ -314,6 +306,20 @@
             justify-content: center;
             margin: 0 2px;
             position: relative;
+        }
+
+        /* Hide hamburger menu by default */
+        .toolbar button.menu-toggle {
+            display: none;
+        }
+
+        /* Compact toolbar for narrow panes */
+        .toolbar.compact button:not(.menu-toggle) {
+            display: none;
+        }
+
+        .toolbar.compact button.menu-toggle {
+            display: flex;
         }
 
         .toolbar button:hover {
@@ -531,7 +537,7 @@
                     <button data-action="clear" data-pane="left" data-tooltip="Clear">⌫</button>
                     <button data-action="undo" data-pane="left" data-tooltip="Undo">↺</button>
                     <button data-action="redo" data-pane="left" data-tooltip="Redo">↻</button>
-                    <button data-action="preview" data-pane="left" data-tooltip="Preview">◉</button>
+                    <button data-action="preview" data-pane="left" data-tooltip="Preview">👁</button>
                     <button class="menu-toggle" data-pane="left" data-tooltip="Menu" aria-expanded="false" aria-haspopup="true" aria-controls="left-dropdown">⋮</button>
                 </div>
             </div>
@@ -539,7 +545,7 @@
                 <button data-action="clear" data-pane="left" role="menuitem">Clear ⌫</button>
                 <button data-action="undo" data-pane="left" role="menuitem">Undo ↺</button>
                 <button data-action="redo" data-pane="left" role="menuitem">Redo ↻</button>
-                <button data-action="preview" data-pane="left" role="menuitem">Preview ◉</button>
+                <button data-action="preview" data-pane="left" role="menuitem">Preview 👁</button>
             </div>
             <div class="content" id="left-content">
                 <div class="editor-container">
@@ -575,7 +581,7 @@ blocks
                     <button data-action="clear" data-pane="right" data-tooltip="Clear">⌫</button>
                     <button data-action="undo" data-pane="right" data-tooltip="Undo">↺</button>
                     <button data-action="redo" data-pane="right" data-tooltip="Redo">↻</button>
-                    <button data-action="preview" data-pane="right" data-tooltip="Preview">◉</button>
+                    <button data-action="preview" data-pane="right" data-tooltip="Preview">👁</button>
                     <button class="menu-toggle" data-pane="right" data-tooltip="Menu" aria-expanded="false" aria-haspopup="true" aria-controls="right-dropdown">⋮</button>
                 </div>
             </div>
@@ -583,7 +589,7 @@ blocks
                 <button data-action="clear" data-pane="right" role="menuitem">Clear ⌫</button>
                 <button data-action="undo" data-pane="right" role="menuitem">Undo ↺</button>
                 <button data-action="redo" data-pane="right" role="menuitem">Redo ↻</button>
-                <button data-action="preview" data-pane="right" role="menuitem">Preview ◉</button>
+                <button data-action="preview" data-pane="right" role="menuitem">Preview 👁</button>
             </div>
             <div class="content" id="right-content">
                 <div class="editor-container">
@@ -762,6 +768,18 @@ Compare documents side by side
             e.tb.textContent = v ? '⫻' : '⫼';
             e.lp.style.width = e.rp.style.width = v ? '100%' : '50%';
             e.lp.style.height = e.rp.style.height = v ? '50%' : '100%';
+            mm();
+        }
+
+        // Manage menu visibility based on pane width
+        function mm() {
+            const th = 420;
+            [e.lp, e.rp].forEach(pane => {
+                const t = pane.querySelector('.toolbar');
+                if (!t) return;
+                if (pane.clientWidth < th) t.classList.add('compact');
+                else t.classList.remove('compact');
+            });
         }
 
         // Setup pane
@@ -806,6 +824,7 @@ Compare documents side by side
                       k = v ? 'height' : 'width';
                 e.lp.style[k] = n + '%';
                 e.rp.style[k] = (100 - n) + '%';
+                mm();
             });
             
             function i(ev) {
@@ -842,8 +861,10 @@ Compare documents side by side
             sp('l');
             sp('r');
             sr();
+            mm();
             window.innerWidth < window.innerHeight && tg();
             e.tb.addEventListener('click', tg);
+            window.addEventListener('resize', th(mm));
             $('export-btn').addEventListener('click', ex);
             document.addEventListener('click', ev => {
                 const b = ev.target;
