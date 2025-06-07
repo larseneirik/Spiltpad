@@ -202,10 +202,23 @@
             .column-title {
                 flex: 1 0 100%;
             }
-            
+
             .toolbar {
                 width: 100%;
                 justify-content: flex-end;
+            }
+
+            /* Keep hamburger inline when toolbar is compact */
+            .column-header.compact {
+                flex-wrap: nowrap;
+            }
+
+            .column-header.compact .column-title {
+                flex: 1 1 auto;
+            }
+
+            .column-header.compact .toolbar {
+                width: auto;
             }
         }
         
@@ -776,9 +789,15 @@ Compare documents side by side
             const th = 420;
             [e.lp, e.rp].forEach(pane => {
                 const t = pane.querySelector('.toolbar');
-                if (!t) return;
-                if (pane.clientWidth < th) t.classList.add('compact');
-                else t.classList.remove('compact');
+                const h = pane.querySelector('.column-header');
+                if (!t || !h) return;
+                if (pane.clientWidth < th) {
+                    t.classList.add('compact');
+                    h.classList.add('compact');
+                } else {
+                    t.classList.remove('compact');
+                    h.classList.remove('compact');
+                }
             });
         }
 
