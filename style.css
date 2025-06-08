@@ -468,3 +468,17 @@ textarea::placeholder {
     transition: none !important;
 }
 
+/* SVG icon sizing */
+.icon {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.dropdown-menu .icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
