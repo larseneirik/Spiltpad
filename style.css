@@ -139,6 +139,13 @@ body, html {
     min-height: min(200px, 30vh);
 }
 
+.pane.fullscreen {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 10;
+}
+
 
 .pane[data-accent="blue"] {
     --accent: var(--blue);
@@ -503,5 +510,10 @@ textarea::placeholder {
     height: 16px;
     margin-right: 6px;
     vertical-align: middle;
+}
+
+.size-6 {
+    width: 24px;
+    height: 24px;
 }
 
