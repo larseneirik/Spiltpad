@@ -123,15 +123,17 @@ body, html {
 }
 
 
-.accent-blue {
+.pane[data-accent="blue"] {
     --accent: var(--blue);
+    --accent-rgb: 135,206,235;
     --accent-bg: var(--blue-bg);
     --accent-focus: var(--blue-focus);
     --accent-glow: var(--blue-glow);
 }
 
-.accent-orange {
+.pane[data-accent="orange"] {
     --accent: var(--orange);
+    --accent-rgb: 255,140,66;
     --accent-bg: var(--orange-bg);
     --accent-focus: var(--orange-focus);
     --accent-glow: var(--orange-glow);
@@ -244,8 +246,8 @@ body, html {
 }
 
 /* Position dropdown relative to pane */
-.accent-blue .dropdown-menu { border-color: var(--blue); }
-.accent-orange .dropdown-menu { border-color: var(--orange); }
+.pane[data-accent="blue"] .dropdown-menu { border-color: var(--blue); }
+.pane[data-accent="orange"] .dropdown-menu { border-color: var(--orange); }
 
 .dropdown-menu.show {
     display: block;
@@ -359,7 +361,12 @@ textarea {
 
 .pane textarea {
     color: var(--accent);
-    background-color: var(--accent-bg);
+}
+
+.pane textarea,
+.pane .preview {
+    background: linear-gradient(to bottom, rgba(var(--accent-rgb), 0.2), rgba(0,0,0,0.6));
+    background-attachment: local;
 }
 
 .pane textarea:focus {
@@ -373,7 +380,6 @@ textarea::placeholder {
 
 .preview {
     overflow-y: auto;
-    background: rgba(0,0,0,0.3);
     border-radius: 8px;
     display: none;
     -webkit-overflow-scrolling: touch;
