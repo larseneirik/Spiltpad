@@ -217,8 +217,8 @@ function applyState(d) {
     }
 
     ['l','r'].forEach(p => {
-        const val = e[p].e.value;
-        s[p] = { h: [val], i: 0, c: val };
+        s[p] = { h: [], i: -1, c: '' };
+        sv(p);
     });
 
     rn('l');
