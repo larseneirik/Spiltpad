@@ -122,13 +122,6 @@ body, html {
     min-height: min(200px, 30vh);
 }
 
-.pane.fullscreen {
-    flex: 1 1 100% !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 10;
-}
-
 
 .pane[data-accent="blue"] {
     --accent: var(--blue);
