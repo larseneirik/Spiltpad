@@ -209,6 +209,8 @@ body, html {
 }
 
 .column-title {
+    flex: 1 1 auto;
+    max-width: 70%;
     flex: 0 1 70%;
     min-width: 0;
 }
@@ -240,7 +242,7 @@ body, html {
 }
 
 /* Force toolbar to wrap on smaller screens */
-@media
+@media (max-width: 600px) {
     .toolbar {
         width: 100%;
         justify-content: flex-end;
@@ -269,7 +271,7 @@ body, html {
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: 40px;
+    top: calc(100% + 4px);
     right: 8px;
     background: var(--btn-bg);
     border: 1px solid #555;
