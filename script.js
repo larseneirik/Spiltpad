@@ -176,7 +176,7 @@ function getState(d = new Date()) {
     const v = e.ws.classList.contains('vertical');
     return {
         meta: {
-            title: e.mt.value || 'document',
+            title: (e.mt.value || '').trim() || 'document',
             created: d.toISOString(),
             exported: d.toISOString(),
             layout: v ? 'vertical' : 'horizontal'
