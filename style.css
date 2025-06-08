@@ -196,8 +196,11 @@ body, html {
 .toolbar, .column-header {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     gap: 6px;
+}
+
+.column-header {
+    flex-wrap: nowrap;
 }
 
 .column-header {
@@ -209,13 +212,15 @@ body, html {
 }
 
 .column-title {
-    flex: 1 1 0;
     flex: 1 1 auto;
     min-width: 0;
 }
 
 .column-title input {
     width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     padding: 4px 6px;
     background: transparent;
     border: none;
