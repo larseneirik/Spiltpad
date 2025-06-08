@@ -63,15 +63,6 @@ const th = f => {
     };
 };
 
-// Change pane accent color
-function setPaneAccent(paneElement, accentName) {
-    paneElement.classList.forEach(c => {
-        if (c.startsWith('accent-')) paneElement.classList.remove(c);
-    });
-    paneElement.classList.add(`accent-${accentName}`);
-    paneElement.setAttribute('data-accent', accentName);
-}
-
 // Save state
 function sv(p) {
     const c = e[p].e.value, h = s[p];
