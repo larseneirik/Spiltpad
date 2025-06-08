@@ -210,8 +210,6 @@ body, html {
 
 .column-title {
     flex: 1 1 auto;
-    max-width: 70%;
-    flex: 0 1 70%;
     min-width: 0;
 }
 
