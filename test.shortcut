@@ -1,0 +1,56 @@
+{
+  "WFWorkflowClientVersion": "1170",
+  "WFWorkflowClientRelease": "17.5",
+  "WFWorkflowName": "Screenshot + Comment Combine",
+  "WFWorkflowActions": [
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.filter.photos",
+      "WFWorkflowActionParameters": {
+        "WFMediaType": "Screenshot",
+        "WFPhotosFilterSortOrder": "NewestFirst",
+        "WFPhotosFilterLimitEnabled": true,
+        "WFPhotosFilterLimitNumber": 1
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.quicklook",
+      "WFWorkflowActionParameters": {}
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.ask",
+      "WFWorkflowActionParameters": {
+        "WFAskActionPrompt": "Enter your comment for this screenshot",
+        "WFAskActionDefaultAnswer": "",
+        "WFAskActionInputType": "Text"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.makehtmlfromrichtext",
+      "WFWorkflowActionParameters": {}
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.makepdffromhtml",
+      "WFWorkflowActionParameters": {}
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.convertimagetype",
+      "WFWorkflowActionParameters": {
+        "WFImageFormat": "JPEG"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.combineimages",
+      "WFWorkflowActionParameters": {
+        "WFCombineImageMode": "Horizontal"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.quicklook",
+      "WFWorkflowActionParameters": {}
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.savefile",
+      "WFWorkflowActionParameters": {}
+    }
+  ]
+}

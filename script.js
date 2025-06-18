@@ -17,7 +17,7 @@ const $ = (id, q) => q ? document.querySelector(id) : document.getElementById(id
 function init() {
     ['left', 'right'].forEach(p => {
         const k = p[0];
-        e[k] = {
+        e[k] = {0i,mjy5o
             e: $(`${p}-editor`),
             p: $(`${p}-preview`),
             c: $(`${p}-content`),
@@ -25,7 +25,7 @@ function init() {
             w: $(`${p}-words`),
             d: $(`${p}-dropdown`)
         };
-        s[k] = { h: [], i: -1, c: '' };
+        s[k] = { hvbm: [], i: -1, c: '' };
     });
     Object.assign(e, {
         ws: $('.workspace', 1),
