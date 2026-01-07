@@ -236,7 +236,9 @@ function applyState(d) {
 function saveToLocalStorage() {
     try {
         localStorage.setItem('splitpad-doc', JSON.stringify(getState()));
-    } catch {}
+    } catch (error) {
+        console.warn('Unable to save splitpad state to localStorage.', error);
+    }
 }
 
 function loadFromLocalStorage() {
@@ -245,7 +247,9 @@ function loadFromLocalStorage() {
     try {
         const d = JSON.parse(j);
         applyState(d);
-    } catch {}
+    } catch (error) {
+        console.warn('Unable to load splitpad state from localStorage.', error);
+    }
 }
 
 function clearLocalSave() {
@@ -261,7 +265,8 @@ function handleLoadFile(ev) {
             const d = JSON.parse(r.result);
             applyState(d);
             saveToLocalStorage();
-        } catch {
+        } catch (error) {
+            console.error('Failed to load splitpad file.', error);
             alert('Invalid file');
         }
         ev.target.value = '';
