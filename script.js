@@ -144,21 +144,11 @@ const ac = {
         const enter = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon size-6"><path fill-rule="evenodd" d="M15 3.75a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V5.56l-3.97 3.97a.75.75 0 1 1-1.06-1.06l3.97-3.97h-2.69a.75.75 0 0 1-.75-.75Zm-12 0A.75.75 0 0 1 3.75 3h4.5a.75.75 0 0 1 0 1.5H5.56l3.97 3.97a.75.75 0 0 1-1.06 1.06L4.5 5.56v2.69a.75.75 0 0 1-1.5 0v-4.5Zm11.47 11.78a.75.75 0 1 1 1.06-1.06l3.97 3.97v-2.69a.75.75 0 0 1 1.5 0v4.5a.75.75 0 0 1-.75.75h-4.5a.75.75 0 0 1 0-1.5h2.69l-3.97-3.97Zm-4.94-1.06a.75.75 0 0 1 0 1.06L5.56 19.5h2.69a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 1 1.5 0v2.69l3.97-3.97a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/></svg>';
         const exit = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon size-6"><path fill-rule="evenodd" d="M3.22 3.22a.75.75 0 0 1 1.06 0l3.97 3.97V4.5a.75.75 0 0 1 1.5 0V9a.75.75 0 0 1-.75.75H4.5a.75.75 0 0 1 0-1.5h2.69L3.22 4.28a.75.75 0 0 1 0-1.06Zm17.56 0a.75.75 0 0 1 0 1.06l-3.97 3.97h2.69a.75.75 0 0 1 0 1.5H15a.75.75 0 0 1-.75-.75V4.5a.75.75 0 0 1 1.5 0v2.69l3.97-3.97a.75.75 0 0 1 1.06 0ZM3.75 15a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-2.69l-3.97 3.97a.75.75 0 0 1-1.06-1.06l3.97-3.97H4.5a.75.75 0 0 1-.75-.75Zm10.5 0a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-2.69l3.97 3.97a.75.75 0 1 1-1.06 1.06l-3.97-3.97v2.69a.75.75 0 0 1-1.5 0V15Z" clip-rule="evenodd"/></svg>';
         const isFullscreen = pane.classList.toggle('fullscreen');
+        const targetBtn = b || btn;
 
         other.style.display = isFullscreen ? 'none' : '';
         e.sp.style.display = isFullscreen ? 'none' : '';
-        if (btn) btn.innerHTML = isFullscreen ? exit : enter;
-        const isFullscreen = pane.classList.toggle('fullscreen');
-
-        if (isFullscreen) {
-            other.style.display = 'none';
-            e.sp.style.display = 'none';
-            b.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon size-6"><path fill-rule="evenodd" d="M3.22 3.22a.75.75 0 0 1 1.06 0l3.97 3.97V4.5a.75.75 0 0 1 1.5 0V9a.75.75 0 0 1-.75.75H4.5a.75.75 0 0 1 0-1.5h2.69L3.22 4.28a.75.75 0 0 1 0-1.06Zm17.56 0a.75.75 0 0 1 0 1.06l-3.97 3.97h2.69a.75.75 0 0 1 0 1.5H15a.75.75 0 0 1-.75-.75V4.5a.75.75 0 0 1 1.5 0v2.69l3.97-3.97a.75.75 0 0 1 1.06 0ZM3.75 15a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-2.69l-3.97 3.97a.75.75 0 0 1-1.06-1.06l3.97-3.97H4.5a.75.75 0 0 1-.75-.75Zm10.5 0a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-2.69l3.97 3.97a.75.75 0 1 1-1.06 1.06l-3.97-3.97v2.69a.75.75 0 0 1-1.5 0V15Z" clip-rule="evenodd"/></svg>';
-        } else {
-            other.style.display = '';
-            e.sp.style.display = '';
-            b.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon size-6"><path fill-rule="evenodd" d="M15 3.75a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V5.56l-3.97 3.97a.75.75 0 1 1-1.06-1.06l3.97-3.97h-2.69a.75.75 0 0 1-.75-.75Zm-12 0A.75.75 0 0 1 3.75 3h4.5a.75.75 0 0 1 0 1.5H5.56l3.97 3.97a.75.75 0 0 1-1.06 1.06L4.5 5.56v2.69a.75.75 0 0 1-1.5 0v-4.5Zm11.47 11.78a.75.75 0 1 1 1.06-1.06l3.97 3.97v-2.69a.75.75 0 0 1 1.5 0v4.5a.75.75 0 0 1-.75.75h-4.5a.75.75 0 0 1 0-1.5h2.69l-3.97-3.97Zm-4.94-1.06a.75.75 0 0 1 0 1.06L5.56 19.5h2.69a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 1 1.5 0v2.69l3.97-3.97a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/></svg>';
-        }
+        if (targetBtn) targetBtn.innerHTML = isFullscreen ? exit : enter;
     }
 };
 
@@ -236,7 +226,9 @@ function applyState(d) {
 function saveToLocalStorage() {
     try {
         localStorage.setItem('splitpad-doc', JSON.stringify(getState()));
-    } catch {}
+    } catch (error) {
+        console.warn('Unable to save splitpad state to localStorage.', error);
+    }
 }
 
 function loadFromLocalStorage() {
@@ -245,7 +237,9 @@ function loadFromLocalStorage() {
     try {
         const d = JSON.parse(j);
         applyState(d);
-    } catch {}
+    } catch (error) {
+        console.warn('Unable to load splitpad state from localStorage.', error);
+    }
 }
 
 function clearLocalSave() {
@@ -261,7 +255,8 @@ function handleLoadFile(ev) {
             const d = JSON.parse(r.result);
             applyState(d);
             saveToLocalStorage();
-        } catch {
+        } catch (error) {
+            console.error('Failed to load splitpad file.', error);
             alert('Invalid file');
         }
         ev.target.value = '';
@@ -401,10 +396,10 @@ document.addEventListener('DOMContentLoaded', () => {
     e.li.addEventListener('change', handleLoadFile);
     e.clb.addEventListener('click', clearLocalSave);
     document.addEventListener('click', ev => {
-        const b = ev.target;
+        const b = ev.target.closest('button[data-action], .menu-toggle');
         
         // Handle action buttons (in toolbar or dropdown)
-        if (b.matches('.toolbar button[data-action]') || b.matches('.dropdown-menu button[data-action]')) {
+        if (b && (b.matches('.toolbar button[data-action]') || b.matches('.dropdown-menu button[data-action]'))) {
             const a = b.dataset.action, p = b.dataset.pane[0];
             ac[a] && ac[a](p, b);
             // Close dropdown if action was from dropdown
@@ -417,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } 
         // Handle menu toggle button
-        else if (b.matches('.menu-toggle')) {
+        else if (b && b.matches('.menu-toggle')) {
             ev.stopPropagation();
             const p = b.dataset.pane;
             const dd = e[p[0]].d || $(`${p}-dropdown`);
@@ -437,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         // Close dropdowns when clicking outside
-        else if (!b.closest('.dropdown-menu') && !b.closest('.menu-toggle')) {
+        else if (!b || (!b.closest('.dropdown-menu') && !b.closest('.menu-toggle'))) {
             document.querySelectorAll('.dropdown-menu.show').forEach(d => {
                 d.classList.remove('show');
                 const t = d.closest('.pane').querySelector('.menu-toggle');
