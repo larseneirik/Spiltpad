@@ -401,10 +401,10 @@ document.addEventListener('DOMContentLoaded', () => {
     e.li.addEventListener('change', handleLoadFile);
     e.clb.addEventListener('click', clearLocalSave);
     document.addEventListener('click', ev => {
-        const b = ev.target;
+        const b = ev.target.closest('button[data-action], .menu-toggle');
         
         // Handle action buttons (in toolbar or dropdown)
-        if (b.matches('.toolbar button[data-action]') || b.matches('.dropdown-menu button[data-action]')) {
+        if (b && (b.matches('.toolbar button[data-action]') || b.matches('.dropdown-menu button[data-action]'))) {
             const a = b.dataset.action, p = b.dataset.pane[0];
             ac[a] && ac[a](p, b);
             // Close dropdown if action was from dropdown
@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } 
         // Handle menu toggle button
-        else if (b.matches('.menu-toggle')) {
+        else if (b && b.matches('.menu-toggle')) {
             ev.stopPropagation();
             const p = b.dataset.pane;
             const dd = e[p[0]].d || $(`${p}-dropdown`);
@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         // Close dropdowns when clicking outside
-        else if (!b.closest('.dropdown-menu') && !b.closest('.menu-toggle')) {
+        else if (!b || (!b.closest('.dropdown-menu') && !b.closest('.menu-toggle'))) {
             document.querySelectorAll('.dropdown-menu.show').forEach(d => {
                 d.classList.remove('show');
                 const t = d.closest('.pane').querySelector('.menu-toggle');
