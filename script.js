@@ -94,8 +94,8 @@ function up(p, c = '') {
 function rn(p) {
     const c = e[p].e.value;
     up(p, c);
-    if (e[p].c.classList.contains('mode-preview') && marked)
-        e[p].p.innerHTML = marked.parse(c);
+    if (e[p].c.classList.contains('mode-preview') && marked && DOMPurify)
+        e[p].p.innerHTML = DOMPurify.sanitize(marked.parse(c));
 }
 
 // Input handler
